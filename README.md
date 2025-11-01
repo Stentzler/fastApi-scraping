@@ -1,10 +1,17 @@
 # FastApi + Scraping
 
-API desenvolvida com FastAPI, Celery, RabbitMQ e Redis para realizar consultas de CNPJ no Sintegra Goiás.
+API desenvolvida com **FastAPI**, **Celery**, **RabbitMQ** e **Redis** para realizar **consultas de CNPJ no Sintegra Goiás**.  
 
-A aplicação recebe um CNPJ via requisição POST /api/v1/scraping/, envia a tarefa para o RabbitMQ, onde o worker Celery consome e executa o web scraping utilizando Selenium.
-O resultado é armazenado temporariamente no Redis na URL redis://redis:6379/0, permitindo a consulta posterior via GET /api/v1/results/{task_id}.
----
+A aplicação recebe um **CNPJ** via requisição:  
+```http
+POST /api/v1/scraping/
+```  
+
+Em seguida, a tarefa é enviada para o **RabbitMQ**, onde o **worker Celery** consome e executa o **web scraping** utilizando **Selenium**.  
+O resultado é armazenado temporariamente no **Redis**, permitindo consulta posterior através de:  
+```http
+GET /api/v1/results/{task_id}
+```
 
 ## 1 - Rodando localmente
 
